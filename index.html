@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUNOVIA Jewellery | مجوهرات فاخرة</title>
+<style>
+  :root{
+    --gold:#b98a44; --gold-light:#d4b57a; --cream:#faf7f2;
+    --dark:#1c1a17; --gray:#6b6560; --border:#e8e0d3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+  body{background:var(--cream);color:var(--dark)}
+  a{text-decoration:none;color:inherit;cursor:pointer}
+  img{max-width:100%;display:block}
+
+  /* ===== Header ===== */
+  .top-bar{background:var(--dark);color:#fff;text-align:center;padding:8px;font-size:13px;letter-spacing:1px}
+  header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+  .header-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
+  .logo{font-size:26px;font-weight:700;letter-spacing:4px;color:var(--dark)}
+  .logo span{color:var(--gold)}
+  nav ul{display:flex;gap:28px;list-style:none}
+  nav a{font-size:15px;color:var(--gray);transition:.3s}
+  nav a:hover,nav a.active{color:var(--gold)}
+  .header-icons{display:flex;gap:18px;align-items:center;font-size:18px}
+  .header-icons a{position:relative}
+  .badge{position:absolute;top:-8px;left:-10px;background:var(--gold);color:#fff;font-size:11px;
+    width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+  /* ===== Layout helpers ===== */
+  .page{display:none;min-height:70vh}
+  .page.active{display:block}
+  .container{max-width:1200px;margin:auto;padding:40px 20px}
+  .section-title{text-align:center;font-size:28px;margin-bottom:8px;letter-spacing:2px}
+  .section-sub{text-align:center;color:var(--gray);margin-bottom:36px}
+  .btn{display:inline-block;background:var(--dark);color:#fff;padding:13px 34px;border:none;
+    cursor:pointer;font-size:14px;letter-spacing:1px;transition:.3s}
+  .btn:hover{background:var(--gold)}
+  .btn-gold{background:var(--gold)}
+  .btn-gold:hover{background:var(--dark)}
+  .btn-outline{background:transparent;color:var(--dark);border:1px solid var(--dark)}
+  .btn-outline:hover{background:var(--dark);color:#fff}
+
+  /* ===== Hero ===== */
+  .hero{background:linear-gradient(rgba(20,15,10,.55),rgba(20,15,10,.55)),
+    url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1400&q=80') center/cover;
+    color:#fff;padding:120px 20px;text-align:right}
+  .hero-inner{max-width:1200px;margin:auto}
+  .hero h1{font-size:52px;line-height:1.2;margin-bottom:16px;font-weight:300}
+  .hero h1 b{color:var(--gold-light)}
+  .hero p{color:#ddd;margin-bottom:28px;font-size:17px}
+
+  /* ===== Products grid ===== */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px}
+  .card{background:#fff;border:1px solid var(--border);transition:.3s;overflow:hidden}
+  .card:hover{box-shadow:0 12px 30px rgba(0,0,0,.08);transform:translateY(-4px)}
+  .card-img{height:260px;overflow:hidden;position:relative}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+  .card:hover .card-img img{transform:scale(1.07)}
+  .wish-btn{position:absolute;top:12px;left:12px;background:#fff;width:36px;height:36px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;font-size:16px;transition:.3s}
+  .wish-btn:hover{background:var(--gold);color:#fff}
+  .card-body{padding:18px;text-align:center}
+  .card-body h3{font-size:16px;font-weight:600;margin-bottom:6px}
+  .card-body .cat{color:var(--gray);font-size:13px;margin-bottom:8px}
+  .price{color:var(--gold);font-weight:700;font-size:17px;margin-bottom:12px}
+  .card .btn{padding:10px 22px;font-size:13px;width:100%}
+
+  /* ===== Shop layout ===== */
+  .shop-layout{display:grid;grid-template-columns:240px 1fr;gap:34px}
+  .filters{background:#fff;border:1px solid var(--border);padding:22px;height:fit-content}
+  .filters h4{margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--gold);font-size:15px}
+  .filters label{display:block;margin-bottom:10px;color:var(--gray);font-size:14px;cursor:pointer}
+  .filters .group{margin-bottom:26px}
+
+  /* ===== Product detail ===== */
+  .detail{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+  .detail-img{background:#fff;border:1px solid var(--border);padding:20px}
+  .detail-info h1{font-size:30px;margin-bottom:10px;font-weight:400}
+  .stars{color:var(--gold);margin-bottom:14px}
+  .detail-price{font-size:28px;color:var(--gold);font-weight:700;margin-bottom:18px}
+  .detail-info p{color:var(--gray);line-height:1.9;margin-bottom:22px}
+  .qty{display:flex;align-items:center;gap:0;margin-bottom:22px;border:1px solid var(--border);width:fit-content}
+  .qty button{width:42px;height:42px;border:none;background:#fff;font-size:18px;cursor:pointer}
+  .qty input{width:56px;height:42px;text-align:center;border:none;border-right:1px solid var(--border);border-left:1px solid var(--border)}
+  .meta{border-top:1px solid var(--border);margin-top:26px;padding-top:18px;color:var(--gray);font-size:14px;line-height:2}
+
+  /* ===== Tables (cart) ===== */
+  table{width:100%;border-collapse:collapse;background:#fff}
+  th,td{padding:16px;border-bottom:1px solid var(--border);text-align:right}
+  th{background:var(--dark);color:#fff;font-weight:500;font-size:14px}
+  .cart-item{display:flex;align-items:center;gap:14px}
+  .cart-item img{width:64px;height:64px;object-fit:cover}
+  .remove{color:#c0392b;cursor:pointer;font-size:18px;background:none;border:none}
+  .summary{background:#fff;border:1px solid var(--border);padding:26px;height:fit-content}
+  .summary h3{margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+  .summary .row{display:flex;justify-content:space-between;margin-bottom:12px;color:var(--gray)}
+  .summary .total{font-weight:700;color:var(--dark);font-size:18px;border-top:1px solid var(--border);padding-top:12px}
+  .cart-layout{display:grid;grid-template-columns:1fr 320px;gap:34px}
+
+  /* ===== Forms ===== */
+  .form-box{max-width:440px;margin:auto;background:#fff;border:1px solid var(--border);padding:40px}
+  .form-box h2{text-align:center;margin-bottom:6px}
+  .form-box .sub{text-align:center;color:var(--gray);font-size:14px;margin-bottom:26px}
+  .field{margin-bottom:18px}
+  .field label{display:block;margin-bottom:6px;font-size:14px;color:var(--gray)}
+  .field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--border);background:var(--cream);font-size:14px;outline:none}
+  .field input:focus{border-color:var(--gold)}
+  .form-box .btn{width:100%}
+  .form-link{text-align:center;margin-top:18px;font-size:14px;color:var(--gray)}
+  .form-link a{color:var(--gold);font-weight:600}
+  .checkout-layout{display:grid;grid-template-columns:1fr 360px;gap:34px}
+  .panel{background:#fff;border:1px solid var(--border);padding:30px}
+  .panel h3{margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--gold);font-size:17px;width:fit-content}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  /* ===== Account ===== */
+  .account-layout{display:grid;grid-template-columns:240px 1fr;gap:34px}
+  .acc-menu{background:#fff;border:1px solid var(--border)}
+  .acc-menu a{display:block;padding:15px 20px;border-bottom:1px solid var(--border);color:var(--gray);font-size:14px}
+  .acc-menu a:hover,.acc-menu a.on{background:var(--dark);color:#fff}
+
+  /* ===== About / contact ===== */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .about-grid p{color:var(--gray);line-height:2.1;margin-bottom:16px}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:34px}
+  .info-item{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+  .info-item .ico{width:46px;height:46px;background:var(--gold);color:#fff;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+
+  /* ===== FAQ ===== */
+  .faq-item{background:#fff;border:1px solid var(--border);margin-bottom:12px}
+  .faq-q{padding:18px 22px;cursor:pointer;font-weight:600;display:flex;justify-content:space-between}
+  .faq-a{display:none;padding:0 22px 18px;color:var(--gray);line-height:1.9}
+  .faq-item.open .faq-a{display:block}
+
+  /* ===== Features / footer ===== */
+  .features{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+  .feat{background:#fff;border:1px solid var(--border);padding:30px 16px}
+  .feat .ico{font-size:30px;margin-bottom:12px}
+  .feat h4{margin-bottom:6px;font-size:15px}
+  .feat p{color:var(--gray);font-size:13px}
+  footer{background:var(--dark);color:#bbb;margin-top:60px}
+  .footer-grid{max-width:1200px;margin:auto;padding:56px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px}
+  footer h4{color:#fff;margin-bottom:16px;letter-spacing:1px}
+  footer a{display:block;margin-bottom:10px;font-size:14px;color:#aaa}
+  footer a:hover{color:var(--gold-light)}
+  .copy{border-top:1px solid #333;text-align:center;padding:18px;font-size:13px}
+  .toast{position:fixed;bottom:26px;right:26px;background:var(--dark);color:#fff;padding:14px 26px;
+    border-right:4px solid var(--gold);opacity:0;transition:.4s;z-index:999}
+  .toast.show{opacity:1}
+
+  @media(max-width:900px){
+    .shop-layout,.cart-layout,.checkout-layout,.account-layout,.detail,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .features{grid-template-columns:repeat(2,1fr)}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    nav ul{display:none}
+    .hero h1{font-size:34px}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">✦ شحن مجاني للطلبات فوق 500 ر.س — خصم 15% على المجموعة الجديدة ✦</div>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" onclick="go('home')">LUNO<span>VIA</span></a>
+    <nav>
+      <ul>
+        <li><a data-nav="home" onclick="go('home')" class="active">الرئيسية</a></li>
+        <li><a data-nav="shop" onclick="go('shop')">المتجر</a></li>
+        <li><a data-nav="about" onclick="go('about')">من نحن</a></li>
+        <li><a data-nav="faq" onclick="go('faq')">الأسئلة الشائعة</a></li>
+        <li><a data-nav="contact" onclick="go('contact')">اتصل بنا</a></li>
+      </ul>
+    </nav>
+    <div class="header-icons">
+      <a onclick="go('login')" title="حسابي">👤</a>
+      <a onclick="go('wishlist')" title="المفضلة">♡<span class="badge" id="wishCount">0</span></a>
+      <a onclick="go('cart')" title="السلة">🛒<span class="badge" id="cartCount">0</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1. الرئيسية ============ -->
+<div class="page active" id="home">
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>أناقة تتلألأ<br><b>إلى الأبد</b></h1>
+      <p>اكتشفي مجموعة LUNOVIA الحصرية من المجوهرات الفاخرة المصنوعة يدوياً</p>
+      <button class="btn btn-gold" onclick="go('shop')">تسوّقي الآن</button>
+      <button class="btn btn-outline" style="color:#fff;border-color:#fff;margin-right:12px" onclick="go('about')">قصتنا</button>
+    </div>
+  </section>
+
+  <div class="container">
+    <h2 class="section-title">وصل حديثاً</h2>
+    <p class="section-sub">قطع مختارة بعناية لإطلالة استثنائية</p>
+    <div class="grid" id="homeGrid"></div>
+  </div>
+
+  <div class="container">
+    <div class="features">
+      <div class="feat"><div class="ico">🚚</div><h4>شحن مجاني</h4><p>للطلبات فوق 500 ر.س</p></div>
+      <div class="feat"><div class="ico">💎</div><h4>جودة مضمونة</h4><p>ذهب وأحجار أصلية 100%</p></div>
+      <div class="feat"><div class="ico">🔄</div><h4>إرجاع سهل</h4><p>خلال 14 يوماً</p></div>
+      <div class="feat"><div class="ico">🔒</div><h4>دفع آمن</h4><p>حماية كاملة لبياناتك</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 2. المتجر ============ -->
+<div class="page" id="shop">
+  <div class="container">
+    <h2 class="section-title">المتجر</h2>
+    <p class="section-sub">جميع منتجاتنا</p>
+    <div class="shop-layout">
+      <aside class="filters">
+        <div class="group">
+          <h4>الفئة</h4>
+          <label><input type="checkbox" checked> الكل</label>
+          <label><input type="checkbox"> خواتم</label>
+          <label><input type="checkbox"> قلادات</label>
+          <label><input type="checkbox"> أساور</label>
+          <label><input type="checkbox"> أقراط</label>
+        </div>
+        <div class="group">
+          <h4>السعر</h4>
+          <label><input type="radio" name="p"> أقل من 500 ر.س</label>
+          <label><input type="radio" name="p"> 500 – 1500 ر.س</label>
+          <label><input type="radio" name="p"> أكثر من 1500 ر.س</label>
+        </div>
+        <div class="group">
+          <h4>المعدن</h4>
+          <label><input type="checkbox"> ذهب أصفر</label>
+          <label><input type="checkbox"> ذهب وردي</label>
+          <label><input type="checkbox"> فضة</label>
+        </div>
+      </aside>
+      <div class="grid" id="shopGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 3. تفاصيل المنتج ============ -->
+<div class="page" id="product">
+  <div class="container">
+    <div class="detail">
+      <div class="detail-img"><img id="pImg" src="" alt=""></div>
+      <div class="detail-info">
+        <div class="cat" style="color:var(--gold);letter-spacing:2px" id="pCat"></div>
+        <h1 id="pName"></h1>
+        <div class="stars">★★★★★ <span style="color:var(--gray);font-size:13px">(24 تقييم)</span></div>
+        <div class="detail-price" id="pPrice"></div>
+        <p>قطعة مصنوعة يدوياً من أجود المعادن، بتصميم أنيق خالد يناسب جميع المناسبات. تأتي في علبة LUNOVIA الفاخرة مع شهادة ضمان.</p>
+        <div class="qty">
+          <button onclick="chQty(1)">+</button>
+          <input type="number" id="pQty" value="1" min="1">
+          <button onclick="chQty(-1)">−</button>
+        </div>
+        <button class="btn btn-gold" onclick="addToCart(currentP, +document.getElementById('pQty').value)">أضف إلى السلة 🛒</button>
+        <button class="btn btn-outline" style="margin-right:10px" onclick="addToWish(currentP)">♡ المفضلة</button>
+        <div class="meta">
+          <div><b>رمز المنتج:</b> <span id="pSku"></span></div>
+          <div><b>التوفر:</b> متوفر في المخزون</div>
+          <div><b>الشحن:</b> يصل خلال 2 – 5 أيام عمل</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 4. السلة ============ -->
+<div class="page" id="cart">
+  <div class="container">
+    <h2 class="section-title">سلة التسوق</h2>
+    <p class="section-sub">راجعي طلبك قبل إتمام الشراء</p>
+    <div class="cart-layout" id="cartWrap">
+      <div>
+        <table>
+          <thead><tr><th>المنتج</th><th>السعر</th><th>الكمية</th><th>الإجمالي</th><th></th></tr></thead>
+          <tbody id="cartBody"></tbody>
+        </table>
+      </div>
+      <div class="summary">
+        <h3>ملخص الطلب</h3>
+        <div class="row"><span>المجموع الفرعي</span><span id="sub">0 ر.س</span></div>
+        <div class="row"><span>الشحن</span><span id="ship">25 ر.س</span></div>
+        <div class="row total"><span>الإجمالي</span><span id="total">0 ر.س</span></div>
+        <button class="btn btn-gold" style="width:100%;margin-top:16px" onclick="go('checkout')">إتمام الشراء</button>
+        <button class="btn btn-outline" style="width:100%;margin-top:10px" onclick="go('shop')">متابعة التسوق</button>
+      </div>
+    </div>
+    <p id="cartEmpty" style="text-align:center;color:var(--gray);display:none;padding:40px">
+      سلتك فارغة حالياً 🛒<br><br><button class="btn" onclick="go('shop')">تسوّقي الآن</button>
+    </p>
+  </div>
+</div>
+
+<!-- ============ 5. الدفع ============ -->
+<div class="page" id="checkout">
+  <div class="container">
+    <h2 class="section-title">إتمام الطلب</h2>
+  
+    <p class="section-sub">أدخلي بيانات الشحن والدفع</p>
+    <div class="checkout-layout">
+      <div class="panel">
+        <h3>بيانات الشحن</h3>
+        <div class="two-col">
+          <div class="field"><label>الاسم الأول</label><input type="text" placeholder="سارة"></div>
+          <div class="field"><label>اسم العائلة</label><input type="text" placeholder="الأحمد"></div>
+        </div>
+        <div class="field"><label>البريد الإلكتروني</label><input type="email" placeholder="you@email.com"></div>
+        <div class="field"><label>رقم الجوال</label><input type="tel" placeholder="05xxxxxxxx"></div>
+        <div class="field"><label>العنوان</label><input type="text" placeholder="الحي، الشارع، رقم المبنى"></div>
+        <div class="two-col">
+          <div class="field"><label>المدينة</label><input type="text" placeholder="الرياض"></div>
+          <div class="field"><label>الرمز البريدي</label><input type="text" placeholder="12345"></div>
+        </div>
+        <h3 style="margin-top:26px">طريقة الدفع</h3>
+        <div class="field"><label><input type="radio" name="pay" checked> 💳 بطاقة ائتمانية</label></div>
+        <div class="two-col">
+          <div class="field"><label>رقم البطاقة</label><input type="text" placeholder="0000 0000 0000 0000"></div>
+          <div class="field"><label>تاريخ الانتهاء / CVV</label><input type="text" placeholder="MM/YY — 123"></div>
+        </div>
+        <div class="field"><label><input type="radio" name="pay"> 🏦 تحويل بنكي</label></div>
+        <div class="field"><label><input type="radio" name="pay"> 💵 الدفع عند الاستلام</label></div>
+      </div>
+      <div class="summary">
+        <h3>طلبك</h3>
+        <div id="checkoutItems"></div>
+        <div class="row"><span>المجموع الفرعي</span><span id="cSub">0 ر.س</span></div>
+        <div class="row"><span>الشحن</span><span id="cShip">25 ر.س</span></div>
+        <div class="row total"><span>الإجمالي</span><span id="cTotal">0 ر.س</span></div>
+        <button class="btn btn-gold" style="width:100%;margin-top:16px" onclick="placeOrder()">تأكيد الطلب ✓</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 6. تسجيل الدخول ============ -->
+<div class="page" id="login">
+  <div class="container">
+    <div class="form-box">
+      <h2>تسجيل الدخول</h2>
+      <p class="sub">مرحباً بعودتك إلى LUNOVIA</p>
+      <div class="field"><label>البريد الإلكتروني</label><input type="email" placeholder="you@email.com"></div>
+      <div class="field"><label>كلمة المرور</label><input type="password" placeholder="••••••••"></div>
+      <div class="field" style="display:flex;justify-content:space-between;font-size:13px">
+        <label style="margin:0"><input type="checkbox"> تذكرني</label>
+        <a style="color:var(--gold)">نسيت كلمة المرور؟</a>
+      </div>
+      <button class="btn btn-gold" onclick="doLogin()">دخول</button>
+      <p class="form-link">ليس لديك حساب؟ <a onclick="go('register')">أنشئي حساباً</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 7. إنشاء حساب ============ -->
+<div class="page" id="register">
+  <div class="container">
+    <div class="form-box">
+      <h2>إنشاء حساب</h2>
+      <p class="sub">انضمي إلى عائلة LUNOVIA</p>
+      <div class="field"><label>الاسم الكامل</label><input type="text" placeholder="سارة الأحمد"></div>
+      <div class="field"><label>البريد الإلكتروني</label><input type="email" placeholder="you@email.com"></div>
+      <div class="field"><label>رقم الجوال</label><input type="tel" placeholder="05xxxxxxxx"></div>
+      <div class="field"><label>كلمة المرور</label><input type="password" placeholder="••••••••"></div>
+      <div class="field"><label>تأكيد كلمة المرور</label><input type="password" placeholder="••••••••"></div>
+      <button class="btn btn-gold" onclick="doLogin()">إنشاء الحساب</button>
+      <p class="form-link">لديك حساب بالفعل؟ <a onclick="go('login')">سجّلي الدخول</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 8. حسابي ============ -->
+<div class="page" id="account">
+  <div class="container">
+    <h2 class="section-title">حسابي</h2>
+    <p class="section-sub">مرحباً بك، سارة 👋</p>
+    <div class="account-layout">
+      <aside class="acc-menu">
+        <a class="on">📋 لوحة التحكم</a>
+        <a>📦 طلباتي</a>
+        <a onclick="go('wishlist')">♡ المفضلة</a>
+        <a>📍 العناوين</a>
+        <a>⚙️ إعدادات الحساب</a>
+        <a onclick="go('home')">🚪 تسجيل الخروج</a>
+      </aside>
+      <div class="panel">
+        <h3>آخر الطلبات</h3>
+        <table>
+          <thead><tr><th>رقم الطلب</th><th>التاريخ</th><th>الحالة</th><th>الإجمالي</th></tr></thead>
+          <tbody>
+            <tr><td>#LNV-1042</td><td>2026/07/15</td><td style="color:green">✓ تم التوصيل</td><td>1,250 ر.س</td></tr>
+            <tr><td>#LNV-1067</td><td>2026/07/18</td><td style="color:var(--gold)">⏳ قيد الشحن</td><td>780 ر.س</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 9. المفضلة ============ -->
+<div class="page" id="wishlist">
+  <div class="container">
+    <h2 class="section-title">قائمة المفضلة ♡</h2>
+    <p class="section-sub">القطع التي أعجبتك</p>
+    <div class="grid" id="wishGrid"></div>
+    <p id="wishEmpty" style="text-align:center;color:var(--gray);padding:40px;display:none">
+      لا توجد منتجات في المفضلة بعد ♡<br><br><button class="btn" onclick="go('shop')">اكتشفي المجموعة</button>
+    </p>
+  </div>
+</div>
+
+<!-- ============ 10. من نحن ============ -->
+<div class="page" id="about">
+  <div class="container">
+    <h2 class="section-title">قصة LUNOVIA</h2>
+    <p class="section-sub">حيث يلتقي الفن بالفخامة</p>
+    <div class="about-grid">
+      <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=700&q=80" alt="LUNOVIA" style="border:1px solid var(--border)">
+      <div>
+        <p>وُلدت <b>LUNOVIA</b> من شغفٍ عميق بفن صياغة المجوهرات، لتقدم قطعاً استثنائية تجمع بين الحِرفية التقليدية والتصميم العصري.</p>
+        <p>كل قطعة في مجموعتنا تُصنع يدوياً بعناية فائقة، باستخدام أجود أنواع الذهب والأحجار الكريمة الأصلية، لتكون رفيقة لحظاتكِ الثمينة إلى الأبد.</p>
+        <p>نؤمن بأن المجوهرات ليست مجرد إكسسوار — بل هي ذكرى، وقصة، وإرث يُهدى عبر الأجيال.</p>
+        <button class="btn btn-gold" onclick="go('shop')">اكتشفي مجموعتنا</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 11. اتصل بنا ============ -->
+<div class="page" id="contact">
+  <div class="container">
+    <h2 class="section-title">اتصل بنا</h2>
+    <p class="section-sub">يسعدنا تواصلك معنا في أي وقت</p>
+    <div class="contact-grid">
+      <div class="panel">
+        <h3>معلومات التواصل</h3>
+        <div class="info-item"><div class="ico">📍</div><div><b>العنوان</b><br><span style="color:var(--gray)">الرياض، حي العليا، برج المملكة</span></div></div>
+        <div class="info-item"><div class="ico">📞</div><div><b>الهاتف</b><br><span style="color:var(--gray)">+966 55 000 0000</span></div></div>
+        <div class="info-item"><div class="ico">✉️</div><div><b>البريد</b><br><span style="color:var(--gray)">hello@lunovia.com</span></div></div>
+        <div class="info-item"><div class="ico">🕐</div><div><b>ساعات العمل</b><br><span style="color:var(--gray)">يومياً 10 صباحاً – 10 مساءً</span></div></div>
+      </div>
+      <div class="panel">
+        <h3>أرسلي رسالتك</h3>
+        <div class="two-col">
+          <div class="field"><label>الاسم</label><input type="text"></div>
+          <div class="field"><label>البريد الإلكتروني</label><input type="email"></div>
+        </div>
+        <div class="field"><label>الموضوع</label><input type="text"></div>
+        <div class="field"><label>الرسالة</label><textarea rows="5"></textarea></div>
+        <button class="btn btn-gold" onclick="toast('✓ تم إرسال رسالتك بنجاح')">إرسال</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 12. الأسئلة الشائعة ============ -->
+<div class="page" id="faq">
+  <div class="container" style="max-width:800px">
+    <h2 class="section-title">الأسئلة الشائعة</h2>
+    <p class="section-sub">إجابات على أكثر الأسئلة تكراراً</p>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">هل المجوهرات أصلية 100%؟ <span>▾</span></div>
+      <div class="faq-a">نعم، جميع منتجاتنا مصنوعة من ذهب وأحجار كريمة أصلية، وتأتي مع شهادة ضمان وفاتورة رسمية.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">كم تستغرق مدة الشحن؟ <span>▾</span></div>
+      <div class="faq-a">يتم توصيل الطلبات خلال 2 – 5 أيام عمل داخل المملكة، و 7 – 14 يوماً للشحن الدولي.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">ما هي سياسة الإرجاع؟ <span>▾</span></div>
+      <div class="faq-a">يمكنك إرجاع المنتج خلال 14 يوماً من الاستلام بشرط أن يكون بحالته الأصلية مع العلبة والشهادة.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">هل يمكن تغليف المنتج كهدية؟ <span>▾</span></div>
+      <div class="faq-a">بالتأكيد! نوفر تغليف هدايا فاخر مجاني مع إمكانية إضافة بطاقة إهداء مخصصة.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">ما طرق الدفع المتاحة؟ <span>▾</span></div>
+      <div class="faq-a">نقبل البطاقات الائتمانية (فيزا / ماستركارد / مدى)، التحويل البنكي، والدفع عند الاستلام.</div></div>
+  </div>
+</div>
+
+<!-- ============ Footer ============ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4 style="letter-spacing:3px">LUNO<span style="color:var(--gold)">VIA</span></h4>
+      <p style="line-height:2;font-size:14px">مجوهرات فاخرة مصنوعة يدوياً بشغف، لتكون رفيقة لحظاتكِ الثمينة إلى الأبد.</p>
+    </div>
+    <div>
+      <h4>روابط سريعة</h4>
+      <a onclick="go('home')">الرئيسية</a>
+      <a onclick="go('shop')">المتجر</a>
+      <a onclick="go('about')">من نحن</a>
+      <a onclick="go('contact')">اتصل بنا</a>
+    </div>
+    <div>
+      <h4>خدمة العملاء</h4>
+      <a onclick="go('faq')">الأسئلة الشائعة</a>
+      <a>سياسة الإرجاع</a>
+      <a>سياسة الخصوصية</a>
+      <a>الشروط والأحكام</a>
+    </div>
+    <div>
+      <h4>تابعينا</h4>
+      <a>📸 إنستغرام</a>
+      <a>🐦 تويتر / X</a>
+      <a>📌 بنترست</a>
+    </div>
+  </div>
+  <div class="copy">© 2026 LUNOVIA Jewellery — جميع الحقوق محفوظة</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ====== بيانات المنتجات ====== */
+const products = [
+  {id:1, name:"خاتم لؤلؤ فينوس",   cat:"خواتم",  price:850,  sku:"LNV-R01", img:"https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80"},
+  {id:2, name:"قلادة نجمة الذهب",  cat:"قلادات", price:1250, sku:"LNV-N02", img:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80"},
+  {id:3, name:"أقراط لونا الماسية", cat:"أقراط",  price:980,  sku:"LNV-E03", img:"https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=600&q=80"},
+  {id:4, name:"سوار أوريليا",      cat:"أساور",  price:640,  sku:"LNV-B04", img:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=80"},
+  {id:5, name:"خاتم سوليتير كلاسيك", cat:"خواتم", price:2100, sku:"LNV-R05", img:"https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=600&q=80"},
+  {id:6, name:"قلادة القمر الوردي", cat:"قلادات", price:770,  sku:"LNV-N06", img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80"},
+  {id:7, name:"أقراط دائرية ذهبية", cat:"أقراط",  price:520,  sku:"LNV-E07", img:"https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80"},
+  {id:8, name:"طقم LUNOVIA الملكي", cat:"أطقم",  price:3400, sku:"LNV-S08", img:"https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=600&q=80"}
+];
+
+let cart = [], wish = [], currentP = 1;
+
+/* ====== التنقل بين الصفحات ====== */
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active', a.dataset.nav===id));
+  if(id==='cart') renderCart();
+  if(id==='checkout') renderCheckout();
+  if(id==='wishlist') renderWish();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ====== عرض المنتجات ====== */
+function cardHTML(p){
+  return `<div class="card">
+    <div class="card-img">
+      <img src="${p.img}" alt="${p.name}" onclick="openProduct(${p.id})">
+      <button class="wish-btn" onclick="addToWish(${p.id})">♡</button>
+    </div>
+    <div class="card-body">
+      <h3>${p.name}</h3>
+      <div class="cat">${p.cat}</div>
+      <div class="price">${p.price.toLocaleString()} ر.س</div>
+      <button class="btn" onclick="addToCart(${p.id},1)">أضف إلى السلة</button>
+    </div>
+  </div>`;
+}
+document.getElementById('homeGrid').innerHTML = products.slice(0,4).map(cardHTML).join('');
+document.getElementById('shopGrid').innerHTML = products.map(cardHTML).join('');
+
+/* ====== صفحة المنتج ====== */
+function openProduct(id){
+  currentP = id;
+  const p = products.find(x=>x.id===id);
+  pImg.src = p.img; pName.textContent = p.name; pCat.textContent = p.cat;
+  pPrice.textContent = p.price.toLocaleString()+' ر.س'; pSku.textContent = p.sku;
+  pQty.value = 1;
+  go('product');
+}
+function chQty(n){ pQty.value = Math.max(1, +pQty.value + n); }
+
+/* ====== السلة ====== */
+function addToCart(id, qty){
+  const item = cart.find(i=>i.id===id);
+  item ? item.qty += qty : cart.push({id, qty});
+  updateBadges(); toast('✓ تمت الإضافة إلى السلة');
+}
+function removeFromCart(id){ cart = cart.filter(i=>i.id!==id); renderCart(); updateBadges(); }
+function calc(){ return cart.reduce((s,i)=> s + products.find(p=>p.id===i.id).price * i.qty, 0); }
+
+function renderCart(){
+  const empty = cart.length===0;
+  cartWrap.style.display = empty ? 'none' : 'grid';
+  cartEmpty.style.display = empty ? 'block' : 'none';
+  if(empty) return;
+  cartBody.innerHTML = cart.map(i=>{
+    const p = products.find(x=>x.id===i.id);
+    return `<tr>
+      <td><div class="cart-item"><img src="${p.img}"><span>${p.name}</span></div></td>
+      <td>${p.price.toLocaleString()} ر.س</td>
+      <td>${i.qty}</td>
+      <td style="color:var(--gold);font-weight:700">${(p.price*i.qty).toLocaleString()} ر.س</td>
+      <td><button class="remove" onclick="removeFromCart(${i.id})">✕</button></td>
+    </tr>`;
+  }).join('');
+  const s = calc(), shipping = s >= 500 ? 0 : 25;
+  sub.textContent = s.toLocaleString()+' ر.س';
+  ship.textContent = shipping===0 ? 'مجاني ✓' : shipping+' ر.س';
+  total.textContent = (s+shipping).toLocaleString()+' ر.س';
+}
+
+function renderCheckout(){
+  checkoutItems.innerHTML = cart.map(i=>{
+    const p = products.find(x=>x.id===i.id);
+    return `<div class="row"><span>${p.name} × ${i.qty}</span><span>${(p.price*i.qty).toLocaleString()} ر.س</span></div>`;
+  }).join('') || '<p style="color:var(--gray)">السلة فارغة</p>';
+  const s = calc(), shipping = s >= 500 ? 0 : 25;
+  cSub.textContent = s.toLocaleString()+' ر.س';
+  cShip.textContent = shipping===0 ? 'مجاني ✓' : shipping+' ر.س';
+  cTotal.textContent = (s+shipping).toLocaleString()+' ر.س';
+}
+
+function placeOrder(){
+  if(cart.length===0){ toast('⚠ السلة فارغة!'); return; }
+  cart = []; updateBadges();
+  toast('🎉 تم تأكيد طلبك بنجاح! شكراً لثقتك بـ LUNOVIA');
+  setTimeout(()=>go('account'), 1500);
+}
+
+/* ====== المفضلة ====== */
+function addToWish(id){
+  if(!wish.includes(id)){ wish.push(id); toast('♡ أُضيف إلى المفضلة'); }
+  else toast('موجود مسبقاً في المفضلة');
+  updateBadges();
+}
+function renderWish(){
+  const empty = wish.length===0;
+  wishEmpty.style.display = empty ? 'block' : 'none';
+  wishGrid.innerHTML = wish.map(id=>cardHTML(products.find(p=>p.id===id))).join('');
+}
+
+/* ====== أدوات ====== */
+function updateBadges(){
+  cartCount.textContent = cart.reduce((s,i)=>s+i.qty,0);
+  wishCount.textContent = wish.length;
+}
+function doLogin(){ toast('✓ تم تسجيل الدخول بنجاح'); setTimeout(()=>go('account'), 800); }
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+  </html>
+  
