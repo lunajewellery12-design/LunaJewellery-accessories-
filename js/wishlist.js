@@ -55,6 +55,8 @@ const Wishlist = {
 
             this.save();
 
+           UI.updateWishlistCount();
+
         }
 
     },
@@ -66,6 +68,8 @@ const Wishlist = {
         );
 
         this.save();
+
+       UI.updateWishlistCount();
 
     },
 
@@ -88,6 +92,8 @@ const Wishlist = {
         this.items = [];
 
         this.save();
+
+       UI.updateWishlistCount();
 
     }
 
