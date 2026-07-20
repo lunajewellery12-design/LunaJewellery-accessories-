@@ -356,7 +356,9 @@ table{
 
 .header-main{
 
-    height:90px;
+.header-main{
+
+    min-height:95px;
 
 }
 
@@ -386,14 +388,17 @@ table{
 
 .logo img{
 
-    height:60px;
+    height:72px;
 
     width:auto;
 
+    max-width:220px;
+
     display:block;
 
-}
+    object-fit:contain;
 
+}
 /*==========================================================
     NAVIGATION
 ==========================================================*/
@@ -414,7 +419,7 @@ table{
 
     align-items:center;
 
-    gap:34px;
+    gap:28px;
 
 }
 
@@ -466,9 +471,9 @@ table{
 
     align-items:center;
 
-    gap:18px;
+    gap:14px;
 
-    margin-left:25px;
+    margin-left:20px;
 
 }
 
@@ -476,9 +481,9 @@ table{
 
     position:relative;
 
-    width:42px;
+    width:44px;
 
-    height:42px;
+    height:44px;
 
     border-radius:50%;
 
@@ -494,11 +499,17 @@ table{
 
     transition:var(--transition);
 
+   border:1px solid rgba(0,0,0,.08);
+
+cursor:pointer;
+   
 }
 
 .action-btn:hover{
 
     color:var(--primary);
+
+   transform:translateY(-2px);
 
     box-shadow:var(--shadow-sm);
 
@@ -508,9 +519,9 @@ table{
 
     position:absolute;
 
-    top:-4px;
+    top:-5px;
 
-    right:-2px;
+    right:-5px;
 
     width:18px;
 
@@ -742,14 +753,10 @@ table{
 
 .hero{
 
-    position:relative;
+    padding:90px 0;
 
-    padding:60px 0 80px;
-
-    background:linear-gradient(180deg,#faf8f5,#f2ede6);
-
-    overflow:hidden;
-
+background:#f8f5f0;
+   
 }
 
 .hero .container{
@@ -760,7 +767,7 @@ table{
 
     align-items:center;
 
-    gap:70px;
+    gap:90px;
 
 }
 
@@ -768,9 +775,11 @@ table{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:72px;
+   font-size:76px;
 
-    line-height:1.05;
+line-height:1.1;
+
+letter-spacing:-1px;
 
     margin-bottom:25px;
 
@@ -786,7 +795,9 @@ table{
 
     margin-bottom:35px;
 
-    font-size:17px;
+font-size:18px;
+
+line-height:1.9;
 
 }
 
@@ -796,7 +807,7 @@ table{
 
     align-items:center;
 
-    gap:18px;
+    gap:20px;
 
     flex-wrap:wrap;
 
@@ -812,19 +823,22 @@ table{
 
     width:100%;
 
-    border-radius:30px;
+    border-radius:26px;
 
     box-shadow:var(--shadow-lg);
+object-fit:cover;
 
+transition:0.4s;
+   
 }
 
 .hero-badge{
 
     position:absolute;
 
-    bottom:35px;
+    bottom:28px;
 
-    left:-35px;
+    left:-28px;
 
     background:#fff;
 
