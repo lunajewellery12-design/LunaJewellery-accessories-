@@ -61,6 +61,8 @@ const Cart = {
 
         this.save();
 
+             UI.updateCartCount();
+
         return true;
 
     },
@@ -73,6 +75,8 @@ const Cart = {
 
         this.save();
 
+       UI.updateCartCount();
+
     },
 
     clear() {
@@ -80,6 +84,8 @@ const Cart = {
         this.items = [];
 
         this.save();
+
+       UI.updateCartCount();
 
           updateQuantity(productId, quantity) {
 
@@ -100,6 +106,8 @@ const Cart = {
         item.quantity = quantity;
 
         this.save();
+
+             UI.updateCartCount();
 
     },
 
