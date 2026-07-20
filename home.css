@@ -1,0 +1,703 @@
+/*==========================================================
+    LUNOVIA JEWELLERY
+    HOME PAGE STYLES
+==========================================================*/
+
+/*=========================================
+    HERO
+=========================================*/
+
+.hero-subtitle{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:8px 18px;
+
+    margin-bottom:25px;
+
+    border-radius:50px;
+
+    background:rgba(201,165,92,.12);
+
+    color:var(--primary);
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+.hero-content{
+
+    animation:fadeHero .8s ease;
+
+}
+
+.hero-image{
+
+    animation:fadeHero 1s ease;
+
+}
+
+@keyframes fadeHero{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================================
+    PRODUCT TABS
+=========================================*/
+
+.product-tabs{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:45px;
+
+    flex-wrap:wrap;
+
+}
+
+.tab-btn{
+
+    padding:13px 26px;
+
+    border-radius:50px;
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    font-weight:500;
+
+}
+
+.tab-btn:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    border-color:var(--primary);
+
+}
+
+.tab-btn.active{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    border-color:var(--primary);
+
+}
+
+/*=========================================
+    COUNTDOWN
+=========================================*/
+
+.countdown{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin:30px 0;
+
+}
+
+.count-item{
+
+    width:82px;
+
+    height:82px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(12px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.count-item strong{
+
+    font-size:24px;
+
+    color:#fff;
+
+}
+
+.count-item span{
+
+    margin-top:5px;
+
+    font-size:12px;
+
+    color:rgba(255,255,255,.85);
+
+}
+
+/*==========================================================
+    INSTAGRAM SECTION
+==========================================================*/
+
+.instagram{
+
+    background:var(--bg);
+
+    padding:100px 0;
+
+}
+
+.instagram .section-text{
+
+    margin:18px auto 60px;
+
+    text-align:center;
+
+}
+
+.instagram-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:20px;
+
+}
+
+.instagram-grid img{
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    transition:var(--transition);
+
+    cursor:pointer;
+
+}
+
+.instagram-grid img:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+/*==========================================================
+    PRODUCT CARD EFFECTS
+==========================================================*/
+
+.product-card{
+
+    position:relative;
+
+}
+
+.product-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:24px;
+
+    border:2px solid transparent;
+
+    transition:var(--transition);
+
+    pointer-events:none;
+
+}
+
+.product-card:hover::after{
+
+    border-color:rgba(201,165,92,.35);
+
+}
+
+/*==========================================================
+    IMAGE HOVER
+==========================================================*/
+
+.product-image{
+
+    background:#f8f8f8;
+
+}
+
+.product-image img{
+
+    transition:transform .6s ease;
+
+}
+
+.product-card:hover .product-image img{
+
+    transform:scale(1.08);
+
+}
+
+/*==========================================================
+    CATEGORY EFFECT
+==========================================================*/
+
+.category-card{
+
+    cursor:pointer;
+
+}
+
+.category-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.12),
+        transparent
+    );
+
+    opacity:0;
+
+    transition:var(--transition);
+
+}
+
+.category-card:hover::before{
+
+    opacity:1;
+
+}
+
+      /*==========================================================
+    SECTION HEADERS
+==========================================================*/
+
+.categories-header,
+.products-header{
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    margin-bottom:55px;
+
+    flex-wrap:wrap;
+
+}
+
+.categories-header .section-text,
+.products-header .section-text{
+
+    margin-top:12px;
+
+}
+
+/*==========================================================
+    COLLECTION
+==========================================================*/
+
+.collection{
+
+    padding:110px 0;
+
+    background:var(--bg);
+
+}
+
+.collection-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    min-height:600px;
+
+}
+
+.collection-card img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.collection-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    background:linear-gradient(
+        90deg,
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.20),
+        transparent
+    );
+
+}
+
+.collection-content{
+
+    max-width:520px;
+
+    padding:70px;
+
+    color:#fff;
+
+}
+
+.collection-content span{
+
+    display:inline-block;
+
+    margin-bottom:18px;
+
+    color:var(--primary-light);
+
+    font-size:15px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+.collection-content h2{
+
+    font-size:58px;
+
+    line-height:1.1;
+
+    font-family:'Cormorant Garamond',serif;
+
+    margin-bottom:20px;
+
+}
+
+.collection-content p{
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+    color:rgba(255,255,255,.88);
+
+}
+
+/*==========================================================
+    NEWSLETTER
+==========================================================*/
+
+.newsletter{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.newsletter::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(201,165,92,.15),
+        transparent
+    );
+
+    pointer-events:none;
+
+}
+
+.newsletter-box{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/*==========================================================
+    BUTTON EFFECTS
+==========================================================*/
+
+.btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120%;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(255,255,255,.18);
+
+    transform:skewX(-30deg);
+
+    transition:.7s;
+
+}
+
+.btn:hover::before{
+
+    left:130%;
+
+  }
+
+/*==========================================================
+    HOME RESPONSIVE
+==========================================================*/
+
+@media (max-width:1200px){
+
+    .instagram-grid{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+    .collection-content{
+
+        padding:50px;
+
+    }
+
+    .collection-content h2{
+
+        font-size:48px;
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .categories-header,
+    .products-header{
+
+        justify-content:center;
+        text-align:center;
+
+    }
+
+    .collection-card{
+
+        min-height:520px;
+
+    }
+
+    .collection-overlay{
+
+        justify-content:center;
+
+    }
+
+    .collection-content{
+
+        max-width:100%;
+        text-align:center;
+        padding:40px;
+
+    }
+
+    .countdown{
+
+        justify-content:center;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .instagram-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:15px;
+
+    }
+
+    .collection-content h2{
+
+        font-size:36px;
+
+    }
+
+    .collection-content{
+
+        padding:30px;
+
+    }
+
+    .product-tabs{
+
+        gap:10px;
+
+    }
+
+    .tab-btn{
+
+        padding:10px 18px;
+
+        font-size:14px;
+
+    }
+
+    .count-item{
+
+        width:70px;
+
+        height:70px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .instagram-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-subtitle{
+
+        font-size:12px;
+
+        letter-spacing:1px;
+
+    }
+
+    .collection-content h2{
+
+        font-size:30px;
+
+    }
+
+    .collection-content p{
+
+        font-size:15px;
+
+    }
+
+    .countdown{
+
+        gap:10px;
+
+    }
+
+    .count-item{
+
+        width:60px;
+
+        height:60px;
+
+    }
+
+    .count-item strong{
+
+        font-size:18px;
+
+    }
+
+    .count-item span{
+
+        font-size:11px;
+
+    }
+
+}
